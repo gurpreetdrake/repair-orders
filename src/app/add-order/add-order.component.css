@@ -1,0 +1,27 @@
+.main{
+    margin-top: 20px;
+    padding-top: 28px;
+    padding-left: 20px; 
+    padding-right: 20px;
+  }
+  .example-container{
+    width: 100%;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+  }
+  mat-form-field{  
+    margin-right: 30px;
+    max-width: 650px;
+  }
+  h4{
+    color: rgb(84, 82, 82);
+  }
+  
+  button{
+    position: absolute;
+    right:20px;
+    bottom :15px;
+    color: #fff;  
+    background-color: #1776D2;
+  }

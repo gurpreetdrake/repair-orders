@@ -1,0 +1,55 @@
+<div class="main">
+    <mat-card>
+        <h4>Receive Order</h4>
+        <mat-divider></mat-divider>
+        <div class="example-container">
+                <mat-form-field>
+                    <input matInput placeholder="Serial No." [(ngModel)]="item.orderNo">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Customer</mat-label>
+                    <mat-select matNativeControl required [(ngModel)]="item.customer">
+                        <mat-option *ngFor="let customer of customers; let idx = index" [value]="customer.id">
+                            {{customer.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Product Model</mat-label>
+                    <mat-select matNativeControl required [(ngModel)]="item.product">
+                        <mat-option *ngFor="let product of products; let idx = index" [value]="product.id">
+                            {{product.modelNo}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Received By</mat-label>
+                    <mat-select matNativeControl required [(ngModel)]="item.employee">
+                        <mat-option *ngFor="let employee of employees; let idx = index" [value]="employee.id">
+                            {{employee.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput placeholder="RMA#" [(ngModel)]="item.rma">
+                </mat-form-field>
+
+                <mat-form-field>
+                        <input matInput placeholder="Receiving Date" [ngModel]="item.receivingDate | date:'yyyy-MM-dd'" disabled>
+                    </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput type="date" placeholder="Delivery Date" [ngModel]="item.deliveryDate | date:'yyyy-MM-dd'" (ngModelChange)="item.deliveryDate = $event">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput placeholder="Comments" [(ngModel)]="item.comments">
+                </mat-form-field>
+        </div>
+        <button mat-raised-button (click)="saveItem()">Save</button>
+    </mat-card>
+</div>

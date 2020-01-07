@@ -1,0 +1,45 @@
+<div id="main">
+    <div id="report" style="padding-top: 20px; max-width: 800px;" *ngIf="item">
+        <h4 style="text-align: center;">Repair Order</h4>
+        <div class="row">            
+            <div class="col">Order No.</div>
+            <div class="col" >{{item.orderNo}} </div>
+        </div>
+        <div class="row">
+            <div class="col">Customer Name:</div>
+            <div class="col" *ngIf="customer">{{customer.name}}</div>
+        </div>
+        <div class="row">
+            <div class="col">Customer Address:</div>
+            <div class="col" *ngIf="customer">{{customer.address}}</div>
+        </div>
+        <div class="row">
+            <div class="col">Model No.</div>
+            <div class="col" *ngIf="product">{{product.modelNo}}</div>
+        </div>
+        <div class="row">
+            <div class="col">Serial No.</div>
+            <div class="col" *ngIf="product">{{product.serialNo}}</div>
+        </div>
+        <div class="row">
+            <div class="col">RMA#</div>
+            <div class="col">{{item.rma}}</div>
+        </div>
+        <div class="row">
+            <div class="col">Received By:</div>
+            <div class="col" *ngIf="employee">{{employee.name}}</div>
+        </div>
+        <div class="row">
+            <div class="col">Comments:</div>
+            <div class="col">{{item.comments}}</div>
+        </div>
+        <div class="row">
+            <div class="col">Receive Date:</div>
+            <div class="col">{{item.receivingDate | date}}</div>
+        </div>
+        <div class="row">
+            <div class="col">Delivery Date:</div>
+            <div class="col">{{item.deliveryDate | date}}</div>
+        </div>
+    </div>
+</div>

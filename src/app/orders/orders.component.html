@@ -1,0 +1,82 @@
+<div id="content">
+  <button id="btn" mat-raised-button routerLink="/receive-order">+</button>
+  <p *ngIf="!orders.length">No item</p>
+  <table mat-table [dataSource]="orders" *ngIf="!loadingData" class="mat-elevation-z8" style="width: 100%;">
+
+    <ng-container matColumnDef="orderNo">
+      <th mat-header-cell *matHeaderCellDef> Order No. </th>
+      <td mat-cell *matCellDef="let element"> {{element.orderNo}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="customer">
+      <th mat-header-cell *matHeaderCellDef> Customer Name </th>
+      <td mat-cell *matCellDef="let element">
+        <ng-container *ngIf="customers.length">{{(customers | filter: 'id' : element.customer)[0].name}}</ng-container>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="modelNo">
+      <th mat-header-cell *matHeaderCellDef> Product Model </th>
+      <td mat-cell *matCellDef="let element">
+        <ng-container *ngIf="products.length">{{(products | filter: 'id' : element.product)[0].modelNo}}</ng-container>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="serialNo">
+      <th mat-header-cell *matHeaderCellDef> Product Serial </th>
+      <td mat-cell *matCellDef="let element">
+        <ng-container *ngIf="products.length">{{(products | filter: 'id' : element.product)[0].serialNo}}</ng-container>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="rma">
+      <th mat-header-cell *matHeaderCellDef> RMA# </th>
+      <td mat-cell *matCellDef="let element"> {{element.rma}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="employee">
+      <th mat-header-cell *matHeaderCellDef> Received By </th>
+      <td mat-cell *matCellDef="let element">
+        <ng-container *ngIf="employees.length">{{(employees | filter: 'id' : element.employee)[0].name}} </ng-container>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="receiveingDate">
+      <th mat-header-cell *matHeaderCellDef> Received </th>
+      <td mat-cell *matCellDef="let element"> {{element.receivingDate | date}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="deliveryDate">
+      <th mat-header-cell *matHeaderCellDef> Delivery </th>
+      <td mat-cell *matCellDef="let element"> {{element.deliveryDate | date}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action1">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element" style="text-align: center;">
+        <button mat-button color="primary" [routerLink]="['/order-detail']" [queryParams]="{id: element.id}">View</button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action2">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element" style="text-align: center;">
+        <button mat-icon-button [routerLink]="['/edit-order']" [queryParams]="{id: element.id}">
+          <mat-icon id="icon">edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action3">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element" style="text-align: center;">
+        <button mat-icon-button color="warn" (click)="deleteItem(element.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-spinner *ngIf="loadingData" style="left: 45%;"></mat-spinner>
