@@ -39,7 +39,7 @@
             </mat-form-field>
 
             <mat-form-field>
-                <input matInput placeholder="Receiving Date" [ngModel]="item.receivingDate | date:'yyyy-MM-dd'" disabled>
+                <input matInput type="date" placeholder="Receiving Date" [ngModel]="item.receivingDate | date:'yyyy-MM-dd'" (ngModelChange)="item.receivingDate = $event">
             </mat-form-field>
 
             <mat-form-field>
